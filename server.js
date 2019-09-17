@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express')
 const app = express()
-const port = 3333
+// const port = 3333
 
 const pathToIndex = path.join(__dirname, 'public', 'index.html');
 const pathToCSS = path.join(__dirname, 'public', 'css', 'app.css');
