@@ -40,4 +40,12 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
   console.log('db open successful');
+  console.log('pizza 1');
+  console.log('pizza 2');
+  console.log('pizza 3');
+  console.log('pizza 4');
+  console.log('pizza 5');
+  console.log('pizza 6');
+  console.log('pizza 7');
+  console.log('pizza 8');
 });
