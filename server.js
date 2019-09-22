@@ -51,9 +51,10 @@ app.post('*', function (req, res) {
   console.log('query:');
   console.log(req.query); // { pizza: 'great' }
 
-  console.log('name is: ');
-  console.log(req.body.name);
-
+  // console.log('name is: ');
+  // console.log(req.body.name);
+  console.log('body is:');
+  console.log(req.body);
 /*
   url:
   /addRestaurant?pizza=great
@@ -75,6 +76,7 @@ app.post('*', function (req, res) {
   switch (req.path) {
     case '/addRestaurant':
       console.log('addRestaurant route invoked');
+      addRestaurant(req.body);
       break;
   }
 });
@@ -119,5 +121,20 @@ db.once('open', function callback() {
   //   console.log('New Restaurant: ' + restaurant);
   // });
 });
+
+function addRestaurant(restaurantDescription) {
+  console.log('create restaurant');
+  var restaurant = new Restaurant(restaurantDescription);
+  console.log(restaurant);
+  console.log('save restaurant');
+  restaurant.save((err) => {
+    console.log('restaurant saved');
+    if (err) {
+      console.log('err: ', err);
+      return
+    }
+    console.log('New Restaurant: ' + restaurant);
+  });
+}
 
 
