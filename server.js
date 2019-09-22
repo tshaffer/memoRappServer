@@ -27,6 +27,14 @@ app.get('*', function (req, res) {
   }
 });
 
+app.post('*', function (req, res) {
+  switch (req.url) {
+    case '/addRestaurant':
+      console.log('addRestaurant invoked');
+      break;
+  }
+});
+
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
@@ -52,20 +60,20 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
   console.log('memoRapp db open successful');
 
-  let restaurantInfo = { id: '69', name: 'La Costena' }
-  console.log('create restaurant');
-  var restaurant = new Restaurant(restaurantInfo);
-  console.log(restaurant);
-  console.log('save restaurant');
+  // let restaurantInfo = { id: '69', name: 'La Costena' }
+  // console.log('create restaurant');
+  // var restaurant = new Restaurant(restaurantInfo);
+  // console.log(restaurant);
+  // console.log('save restaurant');
 
-  restaurant.save((err) => {
-    console.log('restaurant saved');
-    if (err) {
-      console.log('err: ', err);
-      return
-    }
-    console.log('New Restaurant: ' + restaurant);
-  });
+  // restaurant.save((err) => {
+  //   console.log('restaurant saved');
+  //   if (err) {
+  //     console.log('err: ', err);
+  //     return
+  //   }
+  //   console.log('New Restaurant: ' + restaurant);
+  // });
 });
 
 
