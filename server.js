@@ -1,6 +1,6 @@
 var express = require('express');
 const path = require('path');
-
+const bodyParser = require('body-parser');
 var app = express();
 
 const mongoose = require('mongoose');
@@ -27,10 +27,54 @@ app.get('*', function (req, res) {
   }
 });
 
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+
+app.use(bodyParser.json())
+
 app.post('*', function (req, res) {
-  switch (req.url) {
+  // app.post('/addRestaurant/:name', function (req, res) {
+  console.log('post received:');
+
+  console.log(req);
+  console.log(req.route);
+  console.log('other properties of req');
+  console.log('url:');
+  console.log(req.url);
+  console.log('baseUrl:');
+  console.log(req.baseUrl)
+  console.log('path:');
+  console.log(req.path);   // /addRestaurant'
+  console.log('params:');
+  console.log(req.params); 
+  console.log('query:');
+  console.log(req.query); // { pizza: 'great' }
+
+  console.log('name is: ');
+  console.log(req.body.name);
+
+/*
+  url:
+  /addRestaurant?pizza=great
+
+  baseUrl:
+
+  path:
+  /addRestaurant
+
+  params:
+  { '0': '/addRestaurant' }
+
+  query:
+  { pizza: 'great' }
+
+  name is:
+  pizzaJoint
+*/
+  switch (req.path) {
     case '/addRestaurant':
-      console.log('addRestaurant invoked');
+      console.log('addRestaurant route invoked');
       break;
   }
 });
