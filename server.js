@@ -4,6 +4,7 @@ const app = express()
 // const port = 3333
 
 const mongoose = require('mongoose');
+const mongoDB = 'mongodb://ted:memoRappTed0524@ds243607.mlab.com:43607/memorapp';
 
 const pathToIndex = path.join(__dirname, 'public', 'index.html');
 const pathToCSS = path.join(__dirname, 'public', 'css', 'app.css');
@@ -34,18 +35,28 @@ app.listen(port);
 // app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // let uri = 'mongodb://user:pass@host:port/dbname';
-let uri = 'mongodb://heroku_wnqnvnm0:uiscq0d0r4j18regceb577773i@ds129090.mlab.com:29090/heroku_wnqnvnm0';
-mongoose.connect(uri);
+// let uri = 'mongodb://heroku_wnqnvnm0:uiscq0d0r4j18regceb577773i@ds129090.mlab.com:29090/heroku_wnqnvnm0';
+// mongoose.connect(uri);
+// let db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function callback() {
+//   console.log('db open successful');
+//   console.log('pizza 1');
+//   console.log('pizza 2');
+//   console.log('pizza 3');
+//   console.log('pizza 4');
+//   console.log('pizza 5');
+//   console.log('pizza 6');
+//   console.log('pizza 7');
+//   console.log('pizza 8');
+// });
+
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
-  console.log('db open successful');
-  console.log('pizza 1');
-  console.log('pizza 2');
-  console.log('pizza 3');
-  console.log('pizza 4');
-  console.log('pizza 5');
-  console.log('pizza 6');
-  console.log('pizza 7');
-  console.log('pizza 8');
+  console.log('memoRapp db open successful');
 });
+
+
